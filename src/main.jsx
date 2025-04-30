@@ -1,15 +1,27 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Formulario from './pages/Formulario';
-import Citas from './pages/Citas';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import App from './App.jsx';
+import Home from './pages/Home.jsx';
+import Formulario from './pages/formulario.jsx';
+import Citas from './pages/Citas.jsx';
 
-<BrowserRouter>
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/formulario" element={<Formulario />} />
-    <Route path="/citas" element={<Citas />} />
-  </Routes>
-</BrowserRouter>
+import 'bootstrap/dist/css/bootstrap.min.css';
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      { path: '/', element: <Home /> },
+      { path: '/formulario', element: <Formulario /> },
+      { path: '/citas', element: <Citas /> },
+    ],
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);

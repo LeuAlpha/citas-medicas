@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Link, Outlet } from 'react-router-dom';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div className="container">
+          <Link className="navbar-brand" to="/">Clínica Médica</Link>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="menuNav">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">Inicio</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/formulario">Agendar Cita</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/citas">Ver Citas</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
-export default App
+      <main className="py-4">
+        <Outlet />
+      </main>
+    </>
+  );
+}
